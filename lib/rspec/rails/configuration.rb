@@ -85,6 +85,10 @@ module RSpec
         config.include RSpec::Rails::FileFixtureSupport
       end
 
+      if ::Rails.version.to_f >= 6.1
+        config.include RSpec::Rails::ActiveSupportTestingAssertion
+      end
+
       # Add support for fixture_path on fixture_file_upload
       config.include RSpec::Rails::FixtureFileUploadSupport
 
