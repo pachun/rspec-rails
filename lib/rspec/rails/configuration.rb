@@ -71,6 +71,11 @@ module RSpec
       config.add_setting :fixture_path
       config.include RSpec::Rails::FixtureSupport, :use_fixtures
 
+      # Prevent test from failing on undefined method used in ActiveSupport testing helpers
+      if ::Rails::VERSION::STRING.to_f >= 6.0
+        config.include ActiveSupport::Testing::Assertions
+      end
+
       # We'll need to create a deprecated module in order to properly report to
       # gems / projects which are relying on this being loaded globally.
       #
@@ -83,10 +88,6 @@ module RSpec
       if ::Rails::VERSION::STRING > '5'
         config.add_setting :file_fixture_path, default: 'spec/fixtures/files'
         config.include RSpec::Rails::FileFixtureSupport
-      end
-
-      if ::Rails.version.to_f >= 6.1
-        config.include RSpec::Rails::ActiveSupportTestingAssertion
       end
 
       # Add support for fixture_path on fixture_file_upload

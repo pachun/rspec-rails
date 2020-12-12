@@ -8,7 +8,6 @@ require 'rspec/rails/extensions'
 # Load the rspec-rails parts
 require 'rspec/rails/view_rendering'
 require 'rspec/rails/matchers'
-require 'rspec/rails/active_support_testing_assertion'
 require 'rspec/rails/fixture_support'
 require 'rspec/rails/file_fixture_support'
 require 'rspec/rails/fixture_file_upload_support'
